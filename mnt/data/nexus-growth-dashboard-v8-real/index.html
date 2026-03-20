@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0f0f10" />
+  <meta name="description" content="Nexus Growth Dashboard - painel premium para acompanhar investimento, faturamento, ROAS, ROI, leads e metas." />
+  <title>Nexus Growth Dashboard</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" href="icons/icon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand-block">
+        <div class="brand-mark">N</div>
+        <div>
+          <h1>Nexus Growth</h1>
+          <p>Dashboard</p>
+        </div>
+      </div>
+
+      <nav class="menu">
+        <button class="menu-item active" data-target="visao-geral">Visão geral</button>
+        <button class="menu-item" data-target="campanhas">Campanhas</button>
+        <button class="menu-item" data-target="metas">Metas</button>
+        <button class="menu-item" data-target="integracoes">Integrações</button>
+      </nav>
+
+      <div class="install-box">
+        <h3>Instalar app</h3>
+        <p>Quando estiver publicado na Vercel, o botão abaixo poderá aparecer para instalar no computador e no celular.</p>
+        <button id="installBtn" class="gold-btn" disabled>Instalar aplicativo</button>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Painel premium</p>
+          <h2>Nexus Growth Dashboard</h2>
+        </div>
+        <div class="date-range">
+          <label>
+            Início
+            <input type="date" id="startDate" />
+          </label>
+          <label>
+            Fim
+            <input type="date" id="endDate" />
+          </label>
+          <button id="applyRange" class="gold-btn">Aplicar período</button>
+        </div>
+      </header>
+
+      <section id="visao-geral" class="panel active-panel">
+        <div class="cards-grid">
+          <article class="metric-card">
+            <span>Investimento</span>
+            <strong id="investimentoTotal">R$ 0,00</strong>
+            <small>Google + Meta Ads</small>
+          </article>
+          <article class="metric-card">
+            <span>Faturamento</span>
+            <strong id="faturamentoTotal">R$ 0,00</strong>
+            <small>Receita atribuída</small>
+          </article>
+          <article class="metric-card">
+            <span>ROAS</span>
+            <strong id="roasTotal">0,00x</strong>
+            <small>Retorno sobre anúncios</small>
+          </article>
+          <article class="metric-card">
+            <span>ROI</span>
+            <strong id="roiTotal">0%</strong>
+            <small>Lucro sobre investimento</small>
+          </article>
+          <article class="metric-card">
+            <span>Leads</span>
+            <strong id="leadsTotal">0</strong>
+            <small>Leads gerados</small>
+          </article>
+          <article class="metric-card">
+            <span>Clientes</span>
+            <strong id="clientesTotal">0</strong>
+            <small>Conversões</small>
+          </article>
+        </div>
+
+        <div class="content-grid">
+          <section class="glass-card chart-card">
+            <div class="section-head">
+              <h3>Receita x investimento</h3>
+              <span>Período selecionado</span>
+            </div>
+            <div class="bar-chart" id="barChart"></div>
+          </section>
+
+          <section class="glass-card summary-card">
+            <div class="section-head">
+              <h3>Resumo do desempenho</h3>
+              <span>Indicadores</span>
+            </div>
+            <div class="summary-list">
+              <div><span>Taxa de conversão</span><strong id="taxaConversao">0%</strong></div>
+              <div><span>CPL médio</span><strong id="cplMedio">R$ 0,00</strong></div>
+              <div><span>CPA médio</span><strong id="cpaMedio">R$ 0,00</strong></div>
+              <div><span>Crescimento faturamento</span><strong id="crescimento">0%</strong></div>
+            </div>
+          </section>
+        </div>
+      </section>
+
+      <section id="campanhas" class="panel">
+        <div class="content-grid single">
+          <section class="glass-card">
+            <div class="section-head">
+              <h3>Campanhas por canal</h3>
+              <span>Google Ads e Meta Ads</span>
+            </div>
+            <div class="campaign-list" id="campaignList"></div>
+          </section>
+        </div>
+      </section>
+
+      <section id="metas" class="panel">
+        <div class="content-grid single">
+          <section class="glass-card">
+            <div class="section-head">
+              <h3>Meta mensal</h3>
+              <span>Acompanhe quanto vendeu da meta</span>
+            </div>
+            <div class="goal-wrap">
+              <div class="goal-values">
+                <div>
+                  <span>Meta</span>
+                  <strong id="metaMensal">R$ 180.000,00</strong>
+                </div>
+                <div>
+                  <span>Realizado</span>
+                  <strong id="metaRealizada">R$ 0,00</strong>
+                </div>
+                <div>
+                  <span>Atingido</span>
+                  <strong id="metaPercentual">0%</strong>
+                </div>
+              </div>
+              <div class="progress-track">
+                <div class="progress-fill" id="progressFill"></div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </section>
+
+      <section id="integracoes" class="panel">
+        <div class="content-grid">
+          <section class="glass-card">
+            <div class="section-head">
+              <h3>Google Ads</h3>
+              <span>Conexão preparada</span>
+            </div>
+            <div class="integration-box">
+              <p>Esta versão já deixa a tela pronta para a futura conexão real. Quando você avançar para backend/OAuth, os campos principais já estão desenhados.</p>
+              <label>Customer ID<input type="text" placeholder="123-456-7890" /></label>
+              <label>Developer Token<input type="text" placeholder="Cole aqui quando tiver" /></label>
+              <button class="gold-btn muted-btn" type="button">Conectar Google Ads</button>
+            </div>
+          </section>
+
+          <section class="glass-card">
+            <div class="section-head">
+              <h3>Meta Ads</h3>
+              <span>Conexão preparada</span>
+            </div>
+            <div class="integration-box">
+              <p>Também deixei a base da interface pronta para sua futura integração oficial com a Meta Marketing API.</p>
+              <label>Ad Account ID<input type="text" placeholder="act_000000000000000" /></label>
+              <label>Access Token<input type="text" placeholder="Cole aqui quando tiver" /></label>
+              <button class="gold-btn muted-btn" type="button">Conectar Meta Ads</button>
+            </div>
+          </section>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
